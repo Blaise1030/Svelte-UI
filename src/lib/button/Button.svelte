@@ -57,14 +57,18 @@
 	})}
 >
 	<HStack sp={{ h: 'full', align: 'center' }}>
-		<Stack sp={{ h: 'full', align: 'center', justify: 'center', mr: '2' }}>
-			<slot name="left-icon" />
-		</Stack>
-		<Stack sp={{ h: 'full', align: 'center', justify: 'center', mr: '2' }}>
+		{#if $$slots['left-icon']}
+			<Stack sp={{ h: 'full', align: 'center', justify: 'center', mr: '2' }}>
+				<slot name="left-icon" />
+			</Stack>
+		{/if}
+		<Stack sp={{ h: 'full', align: 'center', justify: 'center' }}>
 			<slot />
 		</Stack>
-		<Stack sp={{ h: 'full', align: 'center', justify: 'center', ml: '2' }}>
-			<slot name="right-icon" />
-		</Stack>
+		{#if $$slots['right-icon']}
+			<Stack sp={{ h: 'full', align: 'center', justify: 'center', ml: '2' }}>
+				<slot name="right-icon" />
+			</Stack>
+		{/if}
 	</HStack>
 </button>
