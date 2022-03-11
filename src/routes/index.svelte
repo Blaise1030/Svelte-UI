@@ -8,63 +8,47 @@
 	import Center from '$lib/box/Center.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
 	import GridItem from '$lib/grid/GridItem.svelte';
+	import Button from '$lib/Button/Button.svelte';
 
 	const sampleArray = [1, 23, 4, 56, 6];
 </script>
 
-<Box sp={{ h: '100%', bg: 'gray.700', color: 'white', p: '10px', pl: '10px', mb: '2px' }}
-	>This is a new element</Box
->
-<Grid
-	sp={{
-		gridTemplateColumns: 'repeat(5, 1fr)',
-		gridTemplateRows: 'repeat(2, 1fr)',
-		gridGap: '4px',
-		h: '200px'
-	}}
->
-	<GridItem
-		sp={{
-			border: '1px solid',
-			gridColSpan: '1',
-			gridRowSpan: '2',
-			bg: 'red'
-		}}
-	>
-		1
-	</GridItem>
+<HStack sp={{ justify: 'center' }}>
+	<Button size="xs" colorScheme="teal" isFullWidth>THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="sm" colorScheme="blue">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="md" colorScheme="purple">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="lg" colorScheme="red">THis is tnew</Button>
+</HStack>
+<br />
+<HStack sp={{ justify: 'center' }}>
+	<Button size="xs" variant="ghost" colorScheme="teal">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="sm" variant="ghost" colorScheme="blue">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="md" variant="ghost" colorScheme="purple">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="lg" variant="ghost" colorScheme="red">THis is tnew</Button>
+</HStack>
 
-	<GridItem
-		sp={{
-			border: '1px solid',
-			gridColSpan: '2',
-			bg: 'red'
-		}}
-	>
-		2
-	</GridItem>
+<br />
+<HStack sp={{ justify: 'center' }}>
+	<Button size="xs" variant="outline" colorScheme="teal">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="sm" variant="outline" colorScheme="blue">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="md" variant="outline" colorScheme="purple">THis is tnew</Button>
+	<div style="width: 20px;" />
+	<Button size="lg" variant="outline" colorScheme="red">THis is tnew</Button>
+	<div style="width: 20px;" />
+</HStack>
 
-	<GridItem
-		sp={{
-			border: '10px solid',
-			borderColor: 'white',
-			gridColSpan: '2',
-			bg: 'red.300',
-			color: 'blue.600',
-			fontWeight: 'bold',
-			fontSize: '20px'
-		}}
-	>
-		3
-	</GridItem>
-
-	<GridItem
-		sp={{
-			border: '1px solid',
-			gridColSpan: '4',
-			bg: 'red'
-		}}
-	>
-		3
-	</GridItem>
-</Grid>
+<br />
+<HStack sp={{ justify: 'center' }}>
+	<Button size="xs" variant="link" colorScheme="teal">THis is tnew</Button>
+	<Button size="sm" variant="link" colorScheme="blue">THis is tnew</Button>
+	<Button size="md" variant="link" colorScheme="purple">THis is tnew</Button>
+	<Button size="lg" variant="link" colorScheme="red">THis is tnew</Button>
+</HStack>

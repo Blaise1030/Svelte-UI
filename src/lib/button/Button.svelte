@@ -1,95 +1,58 @@
 <script lang="ts">
-	import type { SystemSize, SytemColorScheme } from '$lib/system/System.types';
+	import Box from '$lib/box/Box.svelte';
+	import Center from '$lib/box/Center.svelte';
+	import HStack from '$lib/stack/HStack.svelte';
+	import Spacer from '$lib/stack/Spacer.svelte';
+	import generateStylesClass from '$lib/system/styleComposer';
+	import type { IStyleInterface } from '$lib/system/styleProps';
 	import { createEventDispatcher } from 'svelte';
+	import { sizeVariant, buttonVariant } from './buttonConfig';
 
-	const COMPONENT_NAME = 'button';
-
-	export let colorScheme: SytemColorScheme = 'gray';
-	export let size: SystemSize = 'md';
-	export let label = '';
-
-	export let type: 'button' | 'reset' | 'submit' = 'button';
-	export let spinnerPlacement: 'start' | 'end' = 'start';
-	export let loadingText: string = 'Loading';
-	export let isFullWidth: boolean = false;
-	export let isDisabled: boolean = false;
-	export let isLoading: boolean = false;
-	export let isActive: boolean = false;
-	export let variant: ButtonVariants;
-
-	const dispatch = createEventDispatcher();
 	const onClick = (event) => dispatch('click', event);
-
-	const className = ['base', size, `isFullWidth-${isFullWidth}`]
-		.map((name) => `${COMPONENT_NAME}-${name}`)
-		.join(' ');
+	const dispatch = createEventDispatcher();
+	export let size: 'lg' | 'md' | 'sm' | 'xs' = 'md';
+	export let variant: 'solid' | 'link' | 'ghost' | 'outline' = 'solid';
+	export let colorScheme: 'teal' | 'purple' | 'blue' | 'gray' | 'red' | 'pink' = 'gray';
+	export let isFullWidth = false;
+	export let disabled: boolean = false;
 </script>
 
-<button class={className} {type} on:click={onClick} disabled={isDisabled || isLoading}>
-	{#if isLoading}
-		<div>{loadingText}</div>
-	{:else}
-		<slot name="leftIcon" />
-		{label}
-		<slot name="rightIcon" />
-	{/if}
+<button
+	style="user-select: none; outline: none; whitespace:nowrap;"
+	{disabled}
+	class={generateStylesClass({
+		w: isFullWidth ? '100%' : 'auto',
+		overflow: 'hidden',
+		verticalAlign: 'baseline',
+		fontWeight: 'semibold',
+		fontFamily: 'body',
+		border: 'none',
+		textAlign: 'center',
+		borderRadius: 'md',
+		cursor: 'pointer',
+		lineHeight: '1.2',
+		h: 'auto',
+		d: 'flex',
+		_focus: {
+			shadow: 'outline'
+		},
+		_disabled: {
+			opacity: '60%',
+			cursor: 'not-allowed'
+		},
+		...sizeVariant[size],
+		...buttonVariant(colorScheme, variant)
+	})}
+>
+	<HStack sp={{ h: 'full' }}>
+		<Box sp={{ h: 'full', px: '1', py: '1' }}>
+			<slot name="left-icon" />
+		</Box>
+		<Center>
+			<slot />
+		</Center>
+		<Box sp={{ h: 'full', px: '1', py: '1' }}>
+			<slot name="right-icon" />
+		</Box>
+	</HStack>
 </button>
-
-<style>
-	.button-base {
-		border: none;
-		outline: none;
-		width: fit-content;
-		cursor: pointer;
-		border-radius: 0.75rem;
-	}
-
-	.button-base:active {
-		outline: auto;
-		transition-duration: 1s;
-	}
-
-	.button-isFullWidth-true {
-		width: 100%;
-	}
-
-	.button-xl {
-		padding-right: 24px;
-		padding-left: 24px;
-		font-size: 1.125rem;
-		min-width: 48px;
-		height: 48px;
-	}
-
-	.button-lg {
-		padding-right: 24px;
-		padding-left: 24px;
-		font-size: 1.125rem;
-		min-width: 48px;
-		height: 48px;
-	}
-
-	.button-md {
-		height: 40px;
-		min-width: 40px;
-		font-size: 1rem;
-		padding-right: 16px;
-		padding-left: 16px;
-	}
-
-	.button-sm {
-		height: 32px;
-		min-width: 32px;
-		font-size: 0.875rem;
-		padding-right: 12px;
-		padding-left: 12px;
-	}
-
-	.button-xs {
-		height: 24px;
-		min-width: 24px;
-		font-size: 0.75rem;
-		padding-right: 8px;
-		padding-left: 8px;
-	}
-</style>
