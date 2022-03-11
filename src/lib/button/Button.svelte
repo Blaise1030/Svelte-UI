@@ -5,6 +5,7 @@
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
 	import Spacer from '$lib/stack/Spacer.svelte';
+	import type StackProps from '$lib/stack/Stack.types';
 	import generateStylesClass from '$lib/system/styleComposer';
 	import type { IStyleInterface } from '$lib/system/styleProps';
 	import { createEventDispatcher } from 'svelte';
@@ -16,6 +17,7 @@
 	export let size: 'lg' | 'md' | 'sm' | 'xs' = 'md';
 	export let variant: 'solid' | 'link' | 'ghost' | 'outline' = 'solid';
 	export let colorScheme: 'teal' | 'purple' | 'blue' | 'gray' | 'red' | 'pink' = 'gray';
+	export let sp: Partial<Omit<IStyleInterface, 'direction'>> & StackProps = {};
 	export let isFullWidth = false;
 	export let disabled: boolean = false;
 
@@ -48,7 +50,8 @@
 			cursor: 'not-allowed'
 		},
 		...sizeVariant[size],
-		...buttonVariant(colorScheme, variant)
+		...buttonVariant(colorScheme, variant),
+		...sp
 	})}
 >
 	<HStack sp={{ h: 'full' }}>

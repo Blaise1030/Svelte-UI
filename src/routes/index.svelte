@@ -1,54 +1,46 @@
 <script lang="ts">
 	import Box from '$lib/box/Box.svelte';
-	import HStack from '$lib/stack/HStack.svelte';
-	import Spacer from '$lib/stack/Spacer.svelte';
 	import VStack from '$lib/stack/VStack.svelte';
-	import Wrap from '$lib/wrap/Wrap.svelte';
-	import WrapItem from '$lib/wrap/WrapItem.svelte';
 	import Center from '$lib/box/Center.svelte';
-	import Grid from '$lib/grid/Grid.svelte';
-	import GridItem from '$lib/grid/GridItem.svelte';
+	import Stack from '$lib/stack/Stack.svelte';
 	import Button from '$lib/Button/Button.svelte';
-
-	const sampleArray = [1, 23, 4, 56, 6];
 </script>
 
-<!-- <Wrap sp={{ justify: 'left' }}>
-	<Button size="xs" colorScheme="teal" isFullWidth>THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="sm" colorScheme="blue">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="md" colorScheme="purple">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="lg" colorScheme="red">THis is tnew</Button>
-</Wrap>
-<br />
-<Wrap sp={{ justify: 'left' }}>
-	<Button size="xs" variant="ghost" colorScheme="teal">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="sm" variant="ghost" colorScheme="blue">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="md" variant="ghost" colorScheme="purple">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="lg" variant="ghost" colorScheme="red">THis is tnew</Button>
-</Wrap>
-
-<br />
-<Wrap sp={{ justify: 'left' }}>
-	<Button size="xs" variant="outline" colorScheme="teal">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="sm" variant="outline" colorScheme="blue">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="md" variant="outline" colorScheme="purple">THis is tnew</Button>
-	<div style="width: 20px;" />
-	<Button size="lg" variant="outline" colorScheme="red">THis is tnew</Button>
-	<div style="width: 20px;" />
-</Wrap>
-
-<br />
-<Wrap sp={{ justify: 'left' }}>
-	<Button size="xs" variant="link" colorScheme="teal">THis is tnew</Button>
-	<Button size="sm" variant="link" colorScheme="blue">THis is tnew</Button>
-	<Button size="md" variant="link" colorScheme="purple">THis is tnew</Button>
-	<Button size="lg" variant="link" colorScheme="red">THis is tnew</Button>
-</Wrap> -->
+<Box sp={{ h: '100vh', w: '100vw' }}>
+	<Center>
+		<VStack sp={{ justify: 'center' }}>
+			<VStack
+				sp={{
+					fontFamily: 'heading',
+					fontWeight: 'black',
+					textAlign: 'center',
+					justify: 'center',
+					fontSize: '5xl'
+				}}
+			>
+				<Box sp={{ color: 'gray.700' }}>Create Svelte Apps</Box>
+				<Box sp={{ color: 'teal.500' }}>with ease</Box>
+			</VStack>
+			<Box
+				sp={{
+					fontSize: 'lg',
+					fontFamily: 'body',
+					color: 'gray.500',
+					textAlign: 'center',
+					maxW: ['80%', '50%'],
+					my: '8'
+				}}
+			>
+				Svelte UI is a simple, modular component library that gives you the building blocks you need
+				to build your Svelte applications with ease.
+			</Box>
+			<Stack sp={{ direction: ['column', 'row', 'row'] }}>
+				<Button colorScheme="teal" sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }}
+					>Get Started</Button
+				>
+				<Box sp={{ w: '5', h: ['3', '0', '0'] }} />
+				<Button sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }}>GitHub</Button>
+			</Stack>
+		</VStack>
+	</Center>
+</Box>
