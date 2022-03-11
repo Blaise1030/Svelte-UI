@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Box from '$lib/box/Box.svelte';
 	import Center from '$lib/box/Center.svelte';
+	import Grid from '$lib/grid/Grid.svelte';
+	import GridItem from '$lib/grid/GridItem.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
 	import Spacer from '$lib/stack/Spacer.svelte';
 	import generateStylesClass from '$lib/system/styleComposer';
@@ -10,16 +12,21 @@
 
 	const onClick = (event) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
+
 	export let size: 'lg' | 'md' | 'sm' | 'xs' = 'md';
 	export let variant: 'solid' | 'link' | 'ghost' | 'outline' = 'solid';
 	export let colorScheme: 'teal' | 'purple' | 'blue' | 'gray' | 'red' | 'pink' = 'gray';
 	export let isFullWidth = false;
 	export let disabled: boolean = false;
+
+	$: ({ ...props } = $$props);
+	$: filteredProps = { ...props, sp: undefined };
 </script>
 
 <button
 	style="user-select: none; outline: none; whitespace:nowrap;"
 	{disabled}
+	{...filteredProps}
 	class={generateStylesClass({
 		w: isFullWidth ? '100%' : 'auto',
 		overflow: 'hidden',
