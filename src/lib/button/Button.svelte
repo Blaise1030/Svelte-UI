@@ -5,6 +5,7 @@
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
 	import Spacer from '$lib/stack/Spacer.svelte';
+	import Stack from '$lib/stack/Stack.svelte';
 	import type StackProps from '$lib/stack/Stack.types';
 	import generateStylesClass from '$lib/system/styleComposer';
 	import type { IStyleInterface } from '$lib/system/styleProps';
@@ -29,6 +30,7 @@
 	style="user-select: none; outline: none; whitespace:nowrap;"
 	{disabled}
 	{...filteredProps}
+	on:click={onClick}
 	class={generateStylesClass({
 		w: isFullWidth ? '100%' : 'auto',
 		overflow: 'hidden',
@@ -54,15 +56,15 @@
 		...sp
 	})}
 >
-	<HStack sp={{ h: 'full' }}>
-		<Box sp={{ h: 'full', px: '1', py: '1' }}>
+	<HStack sp={{ h: 'full', align: 'center' }}>
+		<Stack sp={{ h: 'full', align: 'center', justify: 'center', mr: '2' }}>
 			<slot name="left-icon" />
-		</Box>
-		<Center>
+		</Stack>
+		<Stack sp={{ h: 'full', align: 'center', justify: 'center', mr: '2' }}>
 			<slot />
-		</Center>
-		<Box sp={{ h: 'full', px: '1', py: '1' }}>
+		</Stack>
+		<Stack sp={{ h: 'full', align: 'center', justify: 'center', ml: '2' }}>
 			<slot name="right-icon" />
-		</Box>
+		</Stack>
 	</HStack>
 </button>
