@@ -8,7 +8,7 @@
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import { slide } from 'svelte/transition';
 	import Box from '../lib/box/Box.svelte';
-	import Button from '$lib/Button/Button.svelte';
+	import Button from '$lib/Button.svelte';
 	// import Button from '$lib/Button/Button.svelte';
 
 	let openModal = true;

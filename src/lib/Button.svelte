@@ -8,10 +8,11 @@
 	const onClick = (event: any) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
 
-	export let size: 'lg' | 'md' | 'sm' | 'xs' = 'md';
-	export let variant: 'solid' | 'link' | 'ghost' | 'outline' = 'solid';
 	export let colorScheme: 'teal' | 'purple' | 'blue' | 'gray' | 'red' | 'pink' = 'gray';
 	export let sp: Partial<Omit<IStyleInterface, 'direction'>> & StackProps = {};
+	export let variant: 'solid' | 'link' | 'ghost' | 'outline' = 'solid';
+	export let size: 'lg' | 'md' | 'sm' | 'xs' = 'md';
+
 	export let disabled: boolean = false;
 	export let isFullWidth = false;
 
