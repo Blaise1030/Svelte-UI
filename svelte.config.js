@@ -9,7 +9,8 @@ const config = {
 	ssr: true,
 	hydrate: true,
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		target: '#svelte'
 	}
 };
 
