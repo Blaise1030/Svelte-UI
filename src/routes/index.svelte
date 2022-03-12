@@ -2,13 +2,13 @@
 	import VStack from '$lib/stack/VStack.svelte';
 	import Center from '$lib/box/Center.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
-	import Button from '$lib/Button/Button.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
 	import Spacer from '$lib/stack/Spacer.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import { slide } from 'svelte/transition';
 	import Box from '../lib/box/Box.svelte';
+	import Button from '$lib/Button/Button.svelte';
 
 	let openModal = true;
 	const onGitHubClicked = (e) => window.open('https://github.com/Blaise1030/Svelte-UI', '_blank');
