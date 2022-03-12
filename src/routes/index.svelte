@@ -8,7 +8,7 @@
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import { slide } from 'svelte/transition';
 	import Box from '../lib/box/Box.svelte';
-	import Button from '$lib/Button/Button.svelte';
+	// import Button from '$lib/Button/Button.svelte';
 
 	let openModal = true;
 	const onGitHubClicked = (e) => window.open('https://github.com/Blaise1030/Svelte-UI', '_blank');
@@ -47,7 +47,7 @@
 >
 	<HStack sp={{ align: 'space-between', justify: 'center', py: '3', px: '6' }}>
 		<Box sp={{ fontSize: 'lg', color: 'gray.600', fontWeight: 'bold' }}>Svelte-UI</Box>
-		<Button variant="outline" size="lg">
+		<!-- <Button variant="outline" size="lg">
 			<img
 				slot="left-icon"
 				src="https://img.icons8.com/material/24/FF0000/like--v1.png"
@@ -55,7 +55,7 @@
 			/>
 
 			Sponsor
-		</Button>
+		</Button> -->
 	</HStack>
 </HStack>
 
@@ -75,21 +75,21 @@
 		}}
 	>
 		<VStack sp={{ w: 'full' }}>
-			<Button
+			<!-- <Button
 				on:click={onCloseModal}
 				sp={{ textAlign: 'end', textDecoration: 'underline', fontWeight: '300', fontSize: 'sm' }}
 				variant="link"
 			>
 				Close
-			</Button>
+			</Button> -->
 			<Box sp={{ my: '4', mx: '4', fontSize: 'lg', color: 'gray.500', maxW: '300px' }}
 				>Still Work In Progress. See, We don't have 'close' IconButton yet for this modal.
 			</Box>
-			<Button
+			<!-- <Button
 				on:click={() => window.open('mailto:blaisetiong1030@gmail.com')}
 				sp={{ ml: 'auto' }}
 				variant="solid">Join Me</Button
-			>
+			> -->
 		</VStack>
 	</Box>
 {/if}
@@ -124,7 +124,7 @@
 				to build your Svelte applications with ease.
 			</Box>
 			<Stack sp={{ direction: ['column', 'row', 'row'] }}>
-				<Button
+				<!-- <Button
 					sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }}
 					on:click={onGetStartedClicked}
 					colorScheme="teal"
@@ -135,16 +135,16 @@
 						slot="right-icon"
 						alt="right"
 					/>
-				</Button>
+				</Button> -->
 				<Box sp={{ w: '5', h: ['3', '0', '0'] }} />
-				<Button sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }} on:click={onGitHubClicked}>
+				<!-- <Button sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }} on:click={onGitHubClicked}>
 					<img
 						src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
 						slot="left-icon"
 						alt="github"
 					/>
 					GitHub
-				</Button>
+				</Button> -->
 			</Stack>
 		</VStack>
 	</Center>
@@ -218,7 +218,7 @@
 <!-- Footer -->
 <Box sp={{ py: '8', textAlign: 'center' }}>
 	<Center>
-		<Button
+		<!-- <Button
 			on:click={() => window.open('https://github.com/Blaise1030', '_blank')}
 			sp={{ fontSize: 'md', color: 'gray.500', fontWeight: '300' }}
 			variant="link"
@@ -228,6 +228,6 @@
 				slot="left-icon"
 				alt="link"
 			/>Built with care by Blaise 2022
-		</Button>
+		</Button> -->
 	</Center>
 </Box>
