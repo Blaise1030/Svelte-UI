@@ -1,6 +1,7 @@
 <script>
 	import Box from '$lib/box/Box.svelte';
 	import Center from '$lib/box/Center.svelte';
+	import Button from '$lib/Button.svelte';
 	// import Button from '$lib/Button/Button.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
@@ -47,7 +48,7 @@
 				<Box>Buttons</Box>
 				<br />
 				<Wrap sp={{ align: 'center', spacing: '10px' }}>
-					<!-- <WrapItem>
+					<WrapItem>
 						<Button>Buttons</Button>
 					</WrapItem>
 					<WrapItem>
@@ -62,7 +63,7 @@
 
 					<WrapItem>
 						<Button variant="ghost" colorScheme="teal">Buttons</Button>
-					</WrapItem> -->
+					</WrapItem>
 				</Wrap>
 			</VStack>
 		</Box>

@@ -3,10 +3,8 @@
 	import Center from '$lib/box/Center.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
-	import Spacer from '$lib/stack/Spacer.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
 	import GridItem from '$lib/grid/GridItem.svelte';
-	import { slide } from 'svelte/transition';
 	import Box from '../lib/box/Box.svelte';
 	import Button from '$lib/Button.svelte';
 	// import Button from '$lib/Button/Button.svelte';
@@ -76,21 +74,21 @@
 		}}
 	>
 		<VStack sp={{ w: 'full' }}>
-			<!-- <Button
+			<Button
 				on:click={onCloseModal}
 				sp={{ textAlign: 'end', textDecoration: 'underline', fontWeight: '300', fontSize: 'sm' }}
 				variant="link"
 			>
 				Close
-			</Button> -->
+			</Button>
 			<Box sp={{ my: '4', mx: '4', fontSize: 'lg', color: 'gray.500', maxW: '300px' }}
 				>Still Work In Progress. See, We don't have 'close' IconButton yet for this modal.
 			</Box>
-			<!-- <Button
+			<Button
 				on:click={() => window.open('mailto:blaisetiong1030@gmail.com')}
 				sp={{ ml: 'auto' }}
 				variant="solid">Join Me</Button
-			> -->
+			>
 		</VStack>
 	</Box>
 {/if}
@@ -125,7 +123,7 @@
 				to build your Svelte applications with ease.
 			</Box>
 			<Stack sp={{ direction: ['column', 'row', 'row'] }}>
-				<!-- <Button
+				<Button
 					sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }}
 					on:click={onGetStartedClicked}
 					colorScheme="teal"
@@ -136,16 +134,16 @@
 						slot="right-icon"
 						alt="right"
 					/>
-				</Button> -->
+				</Button>
 				<Box sp={{ w: '5', h: ['3', '0', '0'] }} />
-				<!-- <Button sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }} on:click={onGitHubClicked}>
+				<Button sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }} on:click={onGitHubClicked}>
 					<img
 						src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
 						slot="left-icon"
 						alt="github"
 					/>
 					GitHub
-				</Button> -->
+				</Button>
 			</Stack>
 		</VStack>
 	</Center>
