@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { sizeVariant, buttonVariant } from '$lib/button/buttonConfig';
 	import Box from '$lib/box/Box.svelte';
 	import Center from '$lib/box/Center.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
@@ -10,7 +11,6 @@
 	import generateStylesClass from '$lib/system/styleComposer';
 	import type { IStyleInterface } from '$lib/system/styleProps';
 	import { createEventDispatcher } from 'svelte';
-	import { sizeVariant, buttonVariant } from '$lib/button/buttonConfig';
 
 	const onClick = (event) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
