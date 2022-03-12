@@ -70,7 +70,8 @@
 			borderColor: 'gray.200',
 			borderRadius: 'md',
 			shadow: 'md',
-			p: '3'
+			p: '3',
+			maxW: ['80%', '300px', '300px']
 		}}
 	>
 		<VStack sp={{ w: 'full' }}>
@@ -81,7 +82,7 @@
 			>
 				Close
 			</Button>
-			<Box sp={{ my: '4', mx: '4', fontSize: 'lg', color: 'gray.500', maxW: '300px' }}
+			<Box sp={{ my: '4', mx: '4', fontSize: 'lg', color: 'gray.500' }}
 				>Still Work In Progress. See, We don't have 'close' IconButton yet for this modal.
 			</Box>
 			<Button
