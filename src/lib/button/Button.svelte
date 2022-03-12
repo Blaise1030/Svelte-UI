@@ -10,7 +10,7 @@
 	import generateStylesClass from '$lib/system/styleComposer';
 	import type { IStyleInterface } from '$lib/system/styleProps';
 	import { createEventDispatcher } from 'svelte';
-	import { sizeVariant, buttonVariant } from './buttonConfig';
+	import { sizeVariant, buttonVariant } from '$lib/button/buttonConfig';
 
 	const onClick = (event) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
