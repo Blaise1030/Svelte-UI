@@ -6,8 +6,6 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess(),
-	ssr: true,
-	hydrate: true,
 	kit: {
 		adapter: adapter()
 	}
