@@ -8,6 +8,7 @@
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import { slide } from 'svelte/transition';
 	import Box from '../lib/box/Box.svelte';
+	import Button from '$lib/Button/Button.svelte';
 	// import Button from '$lib/Button/Button.svelte';
 
 	let openModal = true;
@@ -218,7 +219,7 @@
 <!-- Footer -->
 <Box sp={{ py: '8', textAlign: 'center' }}>
 	<Center>
-		<!-- <Button
+		<Button
 			on:click={() => window.open('https://github.com/Blaise1030', '_blank')}
 			sp={{ fontSize: 'md', color: 'gray.500', fontWeight: '300' }}
 			variant="link"
@@ -228,6 +229,6 @@
 				slot="left-icon"
 				alt="link"
 			/>Built with care by Blaise 2022
-		</Button> -->
+		</Button>
 	</Center>
 </Box>
