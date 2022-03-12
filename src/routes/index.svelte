@@ -1,5 +1,4 @@
-<script lang="ts" context="module">
-	export const prerender = true;
+<script lang="ts">
 	import Box from '$lib/box/Box.svelte';
 	import VStack from '$lib/stack/VStack.svelte';
 	import Center from '$lib/box/Center.svelte';
@@ -9,8 +8,12 @@
 	import Spacer from '$lib/stack/Spacer.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
 	import GridItem from '$lib/grid/GridItem.svelte';
+	import { slide } from 'svelte/transition';
 
+	let openModal = true;
 	const onGitHubClicked = (e) => window.open('https://github.com/Blaise1030/Svelte-UI', '_blank');
+	const onCloseModal = (e) => (openModal = false);
+
 	const onGetStartedClicked = (e) => (window.location.href = '/components');
 	const features = [
 		{
@@ -42,7 +45,6 @@
 		top: '0'
 	}}
 >
-	<!-- sp={{ pt: '1.4px', mr: '1' }} -->
 	<HStack sp={{ align: 'space-between', justify: 'center', py: '3', px: '6' }}>
 		<Box sp={{ fontSize: 'lg', color: 'gray.600', fontWeight: 'bold' }}>Svelte-UI</Box>
 		<Button variant="outline" size="lg">
@@ -57,17 +59,52 @@
 	</HStack>
 </HStack>
 
+{#if openModal}
+	<Box
+		sp={{
+			pos: 'fixed',
+			left: '3',
+			bottom: '3',
+			zIndex: '10',
+			bg: 'white',
+			border: '1px solid',
+			borderColor: 'gray.200',
+			borderRadius: 'md',
+			shadow: 'md',
+			p: '3'
+		}}
+	>
+		<VStack sp={{ w: 'full' }}>
+			<Button
+				on:click={onCloseModal}
+				sp={{ textAlign: 'end', textDecoration: 'underline', fontWeight: '300', fontSize: 'sm' }}
+				variant="link"
+			>
+				Close
+			</Button>
+			<Box sp={{ my: '4', mx: '4', fontSize: 'lg', color: 'gray.500', maxW: '300px' }}
+				>Still Work In Progress. See, We don't have 'close' IconButton yet for this modal.
+			</Box>
+			<Button
+				on:click={() => window.open('mailto:blaisetiong1030@gmail.com')}
+				sp={{ ml: 'auto' }}
+				variant="solid">Join Me</Button
+			>
+		</VStack>
+	</Box>
+{/if}
+
 <!-- Body -->
 <Box sp={{ h: '100vh' }}>
 	<Center>
 		<VStack sp={{ justify: 'center', p: '2' }}>
 			<VStack
 				sp={{
+					fontSize: ['4xl', '4xl', '5xl'],
 					fontFamily: 'heading',
 					fontWeight: 'black',
 					textAlign: 'center',
-					justify: 'center',
-					fontSize: '5xl'
+					justify: 'center'
 				}}
 			>
 				<Box sp={{ color: 'gray.700' }}>Create Svelte Apps</Box>
@@ -114,7 +151,9 @@
 </Box>
 
 <!-- Features -->
-<Box sp={{ h: ['auto', '100vh'], bg: 'gray.50', p: ['5', '0'], pt: ['5', '0'] }}>
+<Box
+	sp={{ h: ['auto', 'auto', '100vh'], bg: 'gray.50', p: ['5', '5', '0'], pt: ['10', '10', '0'] }}
+>
 	<Center>
 		<Box
 			sp={{
@@ -122,14 +161,14 @@
 				fontFamily: 'heading',
 				fontWeight: 'black',
 				textAlign: 'center',
-				fontSize: ['3xl', '5xl']
+				fontSize: ['3xl', '4xl', '5xl']
 			}}
 		>
-			A Chakra UI experience for Svelte
+			A Chakra UI experience for Svelte.
 		</Box>
 		<Box
 			sp={{
-				maxW: ['80%', '65%', '50%'],
+				maxW: ['80%', '50%', '50%'],
 				textAlign: 'center',
 				fontFamily: 'body',
 				color: 'gray.500',
@@ -141,14 +180,14 @@
 		<Grid
 			sp={{
 				gridTemplateColumns: 'repeat(3,1fr)',
-				w: ['100%', '70%', '80%'],
+				w: ['100%', '100%', '80%'],
 				gridGap: '8'
 			}}
 		>
 			{#each features as feature}
 				<GridItem
 					sp={{
-						gridColSpan: ['3', '1', '1'],
+						gridColSpan: ['3', '3', '1'],
 						border: '1px solid',
 						borderColor: 'gray.300',
 						borderRadius: 'lg',
