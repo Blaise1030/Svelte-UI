@@ -46,7 +46,7 @@
 >
 	<HStack sp={{ align: 'space-between', justify: 'center', py: '3', px: '6' }}>
 		<Box sp={{ fontSize: 'lg', color: 'gray.600', fontWeight: 'bold' }}>Svelte-UI</Box>
-		<!-- <Button variant="outline" size="lg">
+		<Button variant="outline" size="lg">
 			<img
 				slot="left-icon"
 				src="https://img.icons8.com/material/24/FF0000/like--v1.png"
@@ -54,7 +54,7 @@
 			/>
 
 			Sponsor
-		</Button> -->
+		</Button>
 	</HStack>
 </HStack>
 
