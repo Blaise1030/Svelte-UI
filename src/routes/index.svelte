@@ -6,7 +6,7 @@
 	import Grid from '$lib/grid/Grid.svelte';
 	import GridItem from '$lib/grid/GridItem.svelte';
 	import Box from '../lib/box/Box.svelte';
-	import Button from '$lib/Button.svelte';
+	import Button from '$lib/button/Button.svelte';
 	// import Button from '$lib/Button/Button.svelte';
 
 	let openModal = true;

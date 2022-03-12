@@ -1,7 +1,7 @@
 <script>
 	import Box from '$lib/box/Box.svelte';
 	import Center from '$lib/box/Center.svelte';
-	import Button from '$lib/Button.svelte';
+	import Button from '$lib/button/Button.svelte';
 	// import Button from '$lib/Button/Button.svelte';
 	import Grid from '$lib/grid/Grid.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
@@ -19,7 +19,7 @@
 </script>
 
 <Box sp={{ p: '20px', overflowY: 'none' }}>
-	<!-- <Button size="lg" on:click={() => history.back()}>Back</Button> -->
+	<Button size="lg" on:click={() => history.back()}>Back</Button>
 	<br />
 	<VStack sp={{ justify: 'center' }}>
 		<Box sp={{ w: '100%', color: 'gray.700', fontSize: 'lg', fontWeight: 'bold' }}>
