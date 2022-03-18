@@ -8,6 +8,7 @@ import { SystemText } from './systemText';
 import { SystemSpacing } from './systemSpacing';
 import { SystemSizes } from './systemSizes';
 import { SystemRadii } from './systemRadius';
+import { v4 as uuidv4 } from 'uuid';
 
 const pseudoClasses = {
 	_active: '&:active',
@@ -19,6 +20,7 @@ const pseudoClasses = {
 
 // ****** Core Engine ****** //
 const genStyles = (sp: Partial<IStyleInterface>, defInterface = StyleInterface, base = true) => {
+	const id = `css-${uuidv4()}`;
 	const { unit, responsiveList } = generateBreakpoints(SystemBreakpoints);
 	const stObj = _flattenStyleClasses(defInterface);
 	let pseudoStyle = '';
@@ -39,17 +41,15 @@ const genStyles = (sp: Partial<IStyleInterface>, defInterface = StyleInterface, 
 	const respStyle = responsiveList.reduce(
 		(p, { val, comp }, index) =>
 			comp.length > 0
-				? `${p} @media (${index === 0 ? 'max' : 'min'}-width: ${val}${unit}) {${comp.join(' ')}}`
+				? `${p} @media as screen and (${
+						index === 0 ? 'max' : 'min'
+				  }-width: ${val}${unit}) {.${id}{${comp.join(' ')}}}`
 				: p,
 		''
 	);
-	const merged = `${baseStyle} ${respStyle} ${pseudoStyle}`;
 
-	return !base
-		? merged
-		: css`
-				${merged}
-		  `;
+	if (!base) return `${baseStyle} ${respStyle} ${pseudoStyle}`;
+	return [id, `<style>.${id}{${baseStyle}} ${respStyle} ${pseudoStyle}</style>`];
 };
 
 const generateStylesClass = genStyles;

@@ -3,7 +3,7 @@
 	import type StackProps from '$lib/stack/Stack.types';
 	import generateStylesClass from '$lib/system/styleComposer';
 	import type { IStyleInterface } from '$lib/system/styleProps';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 
 	const onClick = (event: any) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
@@ -95,37 +95,44 @@
 
 	$: ({ ...props } = $$props);
 	$: filteredProps = { ...props, sp: undefined };
+
+	let style = ['1', '2'] as any;
+	onMount(() => {
+		style = generateStylesClass({
+			w: isFullWidth ? '100%' : 'auto',
+			overflow: 'hidden',
+			verticalAlign: 'baseline',
+			fontWeight: 'semibold',
+			fontFamily: 'body',
+			border: 'none',
+			textAlign: 'center',
+			borderRadius: 'md',
+			cursor: 'pointer',
+			lineHeight: '1.2',
+			h: 'auto',
+			d: 'flex',
+			_focus: {
+				shadow: 'outline'
+			},
+			_disabled: {
+				opacity: '60%',
+				cursor: 'not-allowed'
+			},
+			...sizeVariant[size],
+			...buttonVariant(colorScheme, variant),
+			...sp
+		});
+	});
 </script>
+
+{@html style[1]}
 
 <button
 	style="user-select: none; outline: none; whitespace:nowrap;"
 	{disabled}
 	{...filteredProps}
 	on:click={onClick}
-	class={generateStylesClass({
-		w: isFullWidth ? '100%' : 'auto',
-		overflow: 'hidden',
-		verticalAlign: 'baseline',
-		fontWeight: 'semibold',
-		fontFamily: 'body',
-		border: 'none',
-		textAlign: 'center',
-		borderRadius: 'md',
-		cursor: 'pointer',
-		lineHeight: '1.2',
-		h: 'auto',
-		d: 'flex',
-		_focus: {
-			shadow: 'outline'
-		},
-		_disabled: {
-			opacity: '60%',
-			cursor: 'not-allowed'
-		},
-		...sizeVariant[size],
-		...buttonVariant(colorScheme, variant),
-		...sp
-	})}
+	class={style[0]}
 >
 	<Stack sp={{ h: 'full', align: 'center', direction: 'row' }}>
 		{#if $$slots['left-icon']}

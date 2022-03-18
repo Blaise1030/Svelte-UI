@@ -1,8 +1,6 @@
-import { element } from 'svelte/internal';
-import type { SystemStyleProps } from './System.types';
-
 export type IStyleInterface = IBaseStyleInterface & IPseudoStyleInterface;
 export type IPseudoInterfaceProps = Exclude<Partial<IBaseStyleInterface>, IPseudoStyleInterface>;
+export type SystemStyleProps = string | string[];
 export interface IBaseStyleInterface {
 	cursor: SystemStyleProps;
 	gridColSpan: SystemStyleProps;
@@ -160,6 +158,9 @@ export interface IPseudoStyleInterface {
 }
 
 export const StyleInterface = {
+	zIndices: {
+		zIndex: ({ zIndex }) => `z-index:${zIndex}`
+	},
 	colors: {
 		color: ({ color }) => `color:${color}`,
 		bg: ({ bg }) => `background:${bg}`,
@@ -334,9 +335,6 @@ export const StyleInterface = {
 		borderStartRadius: ({ borderStartRadius }) =>
 			`border-top-left-radius:${borderStartRadius}; border-bottom-left-radius:${borderStartRadius}`
 	},
-	zIndices: {
-		zIndex: ({ zIndex }) => `z-index:${zIndex}`
-	},
 	shadows: {
 		textShadow: ({ textShadow }) => `text-shadow:${textShadow}`,
 		dropShadow: ({ dropShodow }) => `filter:${dropShodow}`,
@@ -347,17 +345,3 @@ export const StyleInterface = {
 		backdropBlur: ({ backdropBlur }) => `backdrop-filter:${backdropBlur}`
 	}
 };
-
-// // -- Comment out if want to generate styles
-// export const _generatePropsType = (styleMap = StyleInterface) => {
-// 	const styleObj = Object.keys(styleMap).reduce(
-// 		(prev, curr) => ({
-// 			...styleMap[curr],
-// 			...prev
-// 		}),
-// 		{}
-// 	);
-// 	return `export interface StyleInterface {${Object.keys(styleObj)
-// 		.sort((a, b) => a.length - b.length)
-// 		.reduce((prev, curr) => `${prev} ${curr}:SystemStyleProps;`, '')}}`;
-// };

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { IStyleInterface } from '../system/styleProps';
 	import generateStylesClass from '../system/styleComposer';
+	import { onMount } from 'svelte';
 	export let sp: Partial<IStyleInterface> = {};
 	export let as: string = 'div';
 
@@ -8,13 +9,6 @@
 	$: filteredProps = { ...props, sp: undefined };
 </script>
 
-<div
-	{...filteredProps}
-	{as}
-	class={generateStylesClass({
-		fontFamily: 'body',
-		...sp
-	})}
->
+<div {...filteredProps} {as}>
 	<slot />
 </div>
