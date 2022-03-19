@@ -1,15 +1,13 @@
 <script lang="ts">
-	import {
-		type SystemStyleProps,
-		styleInterface,
-		systemBreakpoints,
-		systemPseudoClass,
-		type IStyleInterface
-	} from './styleProps';
 	import { onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
-	import { base } from '$app/paths';
 	import { css } from '@emotion/css';
+	import {
+		type IStyleInterface,
+		systemPseudoClass,
+		systemBreakpoints,
+		styleInterface
+	} from './styleProps';
 
 	onMount(() => ($common.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches));
 	const useColorMode = (light: string, dark: string) => ($common.isDarkMode ? dark : light);
@@ -39,7 +37,8 @@
 			const cKey = keys[i];
 			const cItem = sp[cKey];
 			const keyMap = styleMap[cKey];
-			if (!Array.isArray(cItem) && pseudoClass[cKey])
+			if (!keyMap) continue;
+			else if (!Array.isArray(cItem) && pseudoClass[cKey])
 				pseudoC = pseudoC.concat(`${pseudoClass[cKey]}{${genStyle(cItem, false)}}`);
 			else if (!Array.isArray(cItem) && !pseudoClass[cKey]) {
 				const item = styleInterface(cItem)[keyMap][cKey];
@@ -53,13 +52,16 @@
 				}
 			}
 		}
+
 		for (let i = 0; i < responsiveBuckets.length; i++) {
 			const media = i === 0 ? 'max' : 'min';
-			const responsive = responsiveBuckets[i].join(' ');
-			resp = resp.concat(`@media (${media}-width: ${breakpoints[i]}${unit}) {${responsive}}`);
+			if (responsiveBuckets[i].length > 0) {
+				const responsive = responsiveBuckets[i].join(' ');
+				resp = resp.concat(`@media (${media}-width: ${breakpoints[i]}${unit}) {${responsive}}`);
+			}
 		}
 
-		const merged = `${baseStyles} ${resp} ${pseudoClass}`;
+		const merged = `${baseStyles} ${resp} ${pseudoC}`;
 
 		return !isBase
 			? merged
@@ -77,14 +79,5 @@
 
 	setContext('common', common);
 </script>
-
-<div
-	class={genStyle({
-		bg: 'red',
-		p: '10px'
-	})}
->
-	Gello
-</div>
 
 <slot />
