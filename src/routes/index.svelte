@@ -6,11 +6,17 @@
 	import Center from '$lib/center/Center.svelte';
 	import Spacer from '$lib/stack/Spacer.svelte';
 	import { getContext } from 'svelte';
+	import Grid from '$lib/Grid/Grid.svelte';
+	import GridItem from '$lib/Grid/GridItem.svelte';
 	const common = getContext('common');
 </script>
 
 <Box
-	sp={{ bg: $common?.useColorMode('white', 'black'), transition: 'background-color 150ms linear' }}
+	sp={{
+		transition: 'background-color 150ms linear',
+		bg: $common?.useColorMode('white', 'black'),
+		color: $common?.useColorMode('black', 'white')
+	}}
 >
 	<button on:click={() => $common?.toggleTheme()}>Change Color Mode</button>
 	<HStack sp={{ p: '1rem', gap: '10px' }}>
@@ -40,4 +46,13 @@
 	</HStack>
 
 	<a href="/components">Next page</a>
+
+	<Grid sp={{ gridTemplateColumns: 'repeat(5,1fr)', gridGap: '4px', p: '20px', bg: 'red' }}>
+		<GridItem>1</GridItem>
+		<GridItem>2</GridItem>
+		<GridItem>3</GridItem>
+		<GridItem>3</GridItem>
+		<GridItem>3</GridItem>
+		<GridItem>3</GridItem>
+	</Grid>
 </Box>
