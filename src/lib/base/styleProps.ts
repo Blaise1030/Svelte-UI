@@ -5,6 +5,7 @@ export interface IBaseStyleInterface {
 	cursor: SystemStyleProps;
 	gridColSpan: SystemStyleProps;
 	gridRowSpan: SystemStyleProps;
+	transition: SystemStyleProps;
 	d: SystemStyleProps;
 	m: SystemStyleProps;
 	p: SystemStyleProps;
@@ -216,6 +217,7 @@ export const styleInterface = (v) => ({
 		left: `left:${v}`
 	},
 	free: {
+		transition: `transition:${v}`,
 		opacity: `opacity:${v}`,
 		bgGradient: `background-image:${v}`,
 		bgClip: `background-clip:${v}`,
