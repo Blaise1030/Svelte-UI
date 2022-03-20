@@ -6,6 +6,14 @@
 	$: ({ ...props } = $$props);
 </script>
 
-<Box {...props} as="div" class="grid-item" sp={{ ...sp }}>
+<Box
+	{...props}
+	sp={{
+		gridColumn: `span ${sp['colSpan'] || '1'} / span ${sp['colSpan'] || '1'}`,
+		gridRow: `span ${sp['rowSpan'] || '1'} / span ${sp['rowSpan'] || '1'}`,
+		...sp
+	}}
+	as="div"
+>
 	<slot />
 </Box>

@@ -8,6 +8,7 @@
 		systemBreakpoints,
 		styleInterface
 	} from './styleProps';
+	import { themeStyles } from './themeStyles';
 
 	onMount(() => ($common.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches));
 	const useColorMode = (light: string, dark: string) => ($common.isDarkMode ? dark : light);
@@ -37,17 +38,22 @@
 			const cKey = keys[i];
 			const cItem = sp[cKey];
 			const keyMap = styleMap[cKey];
-			if (!keyMap) continue;
-			else if (!Array.isArray(cItem) && pseudoClass[cKey])
+			if (!keyMap && !pseudoClass[cKey]) continue;
+			else if (!Array.isArray(cItem) && pseudoClass[cKey]) {
 				pseudoC = pseudoC.concat(`${pseudoClass[cKey]}{${genStyle(cItem, false)}}`);
-			else if (!Array.isArray(cItem) && !pseudoClass[cKey]) {
-				const item = styleInterface(cItem)[keyMap][cKey];
+			} else if (!Array.isArray(cItem) && !pseudoClass[cKey]) {
+				let value = cItem;
+				if (themeStyles[keyMap] && themeStyles[keyMap][cItem]) value = themeStyles[keyMap][cItem];
+				const item = styleInterface(value)[keyMap][cKey];
 				baseStyles = baseStyles.concat(`${item}; `);
 			} else {
 				for (let j = 0; j < cItem.length; j++) {
 					if (j < breakpoints.length) {
-						const value = styleInterface(cItem[j])[keyMap][cKey];
-						responsiveBuckets[j].push(value);
+						let value = cItem[j];
+						if (themeStyles[keyMap] && themeStyles[keyMap][cItem[j]])
+							value = themeStyles[keyMap][cItem[j]];
+						const val = styleInterface(value)[keyMap][cKey];
+						responsiveBuckets[j].push(val);
 					}
 				}
 			}
@@ -62,7 +68,6 @@
 		}
 
 		const merged = `${baseStyles} ${resp} ${pseudoC}`;
-
 		return !isBase
 			? merged
 			: css`

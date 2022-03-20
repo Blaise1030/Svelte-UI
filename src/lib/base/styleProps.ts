@@ -3,8 +3,6 @@ export type IPseudoInterfaceProps = Exclude<Partial<IBaseStyleInterface>, IPseud
 export type SystemStyleProps = string | string[];
 export interface IBaseStyleInterface {
 	cursor: SystemStyleProps;
-	gridColSpan: SystemStyleProps;
-	gridRowSpan: SystemStyleProps;
 	transition: SystemStyleProps;
 	d: SystemStyleProps;
 	m: SystemStyleProps;
@@ -173,13 +171,11 @@ export const styleInterface = (v) => ({
 		bg: `background:${v}`,
 		color: `color:${v}`
 	},
-	fonts: {
-		letterSpacing: `letter-spacing:${v}`,
-		lineHeight: `line-height:${v}`,
-		fontFamily: `font-family:${v}`,
-		fontWeight: `font-weight:${v}`,
-		fontSize: `font-size:${v}`
-	},
+	letterSpacing: { letterSpacing: `letter-spacing:${v}` },
+	lineHeight: { lineHeight: `line-height:${v}` },
+	fontFamily: { fontFamily: `font-family:${v}` },
+	fontWeight: { fontWeight: `font-weight:${v}` },
+	fontSize: { fontSize: `font-size:${v}` },
 	sizes: {
 		w: `width:${v}`,
 		h: `height:${v}`,

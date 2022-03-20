@@ -1,58 +1,30 @@
-<script lang="ts">
-	import HStack from '$lib/stack/HStack.svelte';
+<script>
 	import Box from '$lib/base/Box.svelte';
-	import Wrap from '$lib/wrap/Wrap.svelte';
-	import WrapItem from '$lib/wrap/WrapItem.svelte';
-	import Center from '$lib/center/Center.svelte';
-	import Spacer from '$lib/stack/Spacer.svelte';
-	import { getContext } from 'svelte';
+	import Button from '$lib/button/Button.svelte';
 	import Grid from '$lib/Grid/Grid.svelte';
 	import GridItem from '$lib/Grid/GridItem.svelte';
-	const common = getContext('common');
 </script>
 
-<Box
+<Box sp={{ p: '10px' }}>
+	<Button colorScheme="teal">
+		<Box slot="left-icon">Left Icon</Box>
+		<Box as="p">This is the button</Box>
+		<Box slot="right-icon">Left Icon</Box>
+	</Button>
+</Box>
+
+<Box sp={{ p: '8', bg: 'red.100' }}>Hello</Box>
+<Grid
 	sp={{
-		transition: 'background-color 150ms linear',
-		bg: $common?.useColorMode('white', 'black'),
-		color: $common?.useColorMode('black', 'white')
+		gridTemplateColumns: 'repeat(6,1fr)',
+		bg: 'red'
 	}}
 >
-	<button on:click={() => $common?.toggleTheme()}>Change Color Mode</button>
-	<HStack sp={{ p: '1rem', gap: '10px' }}>
-		<Box sp={{ bg: 'red', p: '10px' }}>Hello1</Box>
-		<Box sp={{ bg: 'blue' }}>Hello1</Box>
-		<Box>Hello1</Box>
-		<Box>Hello1</Box>
-	</HStack>
-	<Wrap sp={{ w: '100px' }}>
-		<WrapItem>Item 1</WrapItem>
-		<WrapItem>Item 1</WrapItem>
-		<WrapItem>Item 1</WrapItem>
-		<WrapItem>Item 1</WrapItem>
-		<WrapItem>Item 1</WrapItem>
-		<WrapItem>Item 1</WrapItem>
-		<WrapItem>Item 1</WrapItem>
-	</Wrap>
-
-	<Center sp={{ w: '500px', h: '500px', bg: 'red' }}>
-		<Box as="h2">Hello</Box>
-	</Center>
-
-	<HStack sp={{ w: '100%', bg: 'blue', color: 'white' }}>
-		<Box sp={{ p: '20px' }}>Hello1</Box>
-		<Spacer />
-		<Box sp={{ p: '20px' }}>Hello1</Box>
-	</HStack>
-
-	<a href="/components">Next page</a>
-
-	<Grid sp={{ gridTemplateColumns: 'repeat(5,1fr)', gridGap: '4px', p: '20px', bg: 'red' }}>
-		<GridItem>1</GridItem>
-		<GridItem>2</GridItem>
-		<GridItem>3</GridItem>
-		<GridItem>3</GridItem>
-		<GridItem>3</GridItem>
-		<GridItem>3</GridItem>
-	</Grid>
-</Box>
+	<GridItem sp={{ colSpan: '5' }}>Hello1</GridItem>
+	<GridItem sp={{ colSpan: '1' }}>Hello1</GridItem>
+	<GridItem>Hello3</GridItem>
+	<GridItem>Hello4</GridItem>
+	<GridItem>Hello5</GridItem>
+	<GridItem>Hello6</GridItem>
+	<GridItem>Hello6</GridItem>
+</Grid>
