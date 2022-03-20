@@ -1,6 +1,8 @@
 <script>
+	import AspectRatio from '$lib/aspectRatio/AspectRatio.svelte';
 	import Box from '$lib/base/Box.svelte';
 	import Button from '$lib/button/Button.svelte';
+	import Center from '$lib/center/Center.svelte';
 	import Grid from '$lib/Grid/Grid.svelte';
 	import GridItem from '$lib/Grid/GridItem.svelte';
 </script>
@@ -28,3 +30,11 @@
 	<GridItem>Hello6</GridItem>
 	<GridItem>Hello6</GridItem>
 </Grid>
+
+<Box sp={{ w: '80%' }}>
+	<AspectRatio sp={{ bg: 'red', ratio: '2/1' }}>
+		<Center>
+			<Box>This is the box</Box>
+		</Center>
+	</AspectRatio>
+</Box>
