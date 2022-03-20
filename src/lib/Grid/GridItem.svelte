@@ -1,7 +1,6 @@
 <script lang="ts">
+	import type { GridItemPropsOmit, GridItemProps } from './Grid.types';
 	import Box from '$lib/base/Box.svelte';
-	import type { GridItemProps, GridItemPropsOmit } from './Grid.types';
-
 	export let sp: Partial<GridItemPropsOmit & GridItemProps> = {};
 	$: ({ ...props } = $$props);
 </script>

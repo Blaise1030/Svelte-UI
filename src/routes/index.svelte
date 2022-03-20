@@ -1,40 +1,63 @@
-<script>
+<script lang="ts">
 	import AspectRatio from '$lib/aspectRatio/AspectRatio.svelte';
 	import Box from '$lib/base/Box.svelte';
 	import Button from '$lib/button/Button.svelte';
 	import Center from '$lib/center/Center.svelte';
-	import Grid from '$lib/Grid/Grid.svelte';
-	import GridItem from '$lib/Grid/GridItem.svelte';
+	import HStack from '$lib/stack/HStack.svelte';
+	import Spacer from '$lib/stack/Spacer.svelte';
+	import VStack from '$lib/stack/VStack.svelte';
+	import { getContext } from 'svelte';
+	const common = getContext('common');
 </script>
 
-<Box sp={{ p: '10px' }}>
-	<Button colorScheme="teal">
-		<Box slot="left-icon">Left Icon</Box>
-		<Box as="p">This is the button</Box>
-		<Box slot="right-icon">Left Icon</Box>
-	</Button>
-</Box>
-
-<Box sp={{ p: '8', bg: 'red.100' }}>Hello</Box>
-<Grid
+<Box
+	as="nav"
 	sp={{
-		gridTemplateColumns: 'repeat(6,1fr)',
-		bg: 'red'
+		borderBottom: '1px solid',
+		borderColor: 'gray.200',
+		zIndex: '10',
+		pos: 'fixed',
+		bg: 'white',
+		w: '100%',
+		left: '0',
+		top: '0'
 	}}
 >
-	<GridItem sp={{ colSpan: '5' }}>Hello1</GridItem>
-	<GridItem sp={{ colSpan: '1' }}>Hello1</GridItem>
-	<GridItem>Hello3</GridItem>
-	<GridItem>Hello4</GridItem>
-	<GridItem>Hello5</GridItem>
-	<GridItem>Hello6</GridItem>
-	<GridItem>Hello6</GridItem>
-</Grid>
+	<HStack sp={{ w: '100%' }}>
+		<Box sp={{ p: '5' }}>Leading</Box>
+		<Spacer />
+		<Box sp={{ p: '5' }}>Ending</Box>
+	</HStack>
+</Box>
 
-<Box sp={{ w: '80%' }}>
-	<AspectRatio sp={{ bg: 'red', ratio: '2/1' }}>
+<Box as="main">
+	<Box as="section" sp={{ h: '100Vh', w: '100vw' }}>
 		<Center>
-			<Box>This is the box</Box>
+			<VStack sp={{ align: 'center', textAlign: 'center' }}>
+				<Box
+					as="span"
+					sp={{
+						fontSize: ['2xl', '3xl', '6xl'],
+						fontFamily: 'heading',
+						fontWeight: 'black',
+						color: 'gray.700'
+					}}
+					>Create accessible Svelte Apps
+					<br />
+					<Box as="span" sp={{ color: 'teal.600' }}>with speed</Box>
+				</Box>
+				<HStack sp={{ align: 'center', justify: 'center', gap: '2', p: '8' }}>
+					<Button colorScheme="teal" size="lg" sp={{ px: '50px', py: '30px' }}>Start Now</Button>
+					<Button size="lg" sp={{ px: '50px', py: '30px' }}>GitHub</Button>
+				</HStack>
+			</VStack>
 		</Center>
-	</AspectRatio>
+	</Box>
+	<Box as="section" sp={{ h: '100Vh', w: '100vw' }}>
+		<Center>
+			<VStack>
+				<Box as="p">Svelte UI</Box>
+			</VStack>
+		</Center>
+	</Box>
 </Box>

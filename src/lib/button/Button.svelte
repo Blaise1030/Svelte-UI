@@ -1,10 +1,8 @@
 <script lang="ts">
 	import Box from '$lib/base/Box.svelte';
-	import Stack from '$lib/stack/Stack.svelte';
 	import type StackProps from '$lib/stack/Stack.types';
 	import type { IStyleInterface } from '$lib/base/styleProps';
-
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	const onClick = (event: any) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
 
@@ -14,82 +12,9 @@
 	export let size: 'lg' | 'md' | 'sm' | 'xs' = 'md';
 	export let disabled: boolean = false;
 	export let isFullWidth = false;
-	const sizeVariant = {
-		lg: {
-			h: '12',
-			minW: '12',
-			fontSize: 'lg',
-			px: '6'
-		},
-		md: {
-			h: '10',
-			minW: '10',
-			fontSize: 'md',
-			px: '4'
-		},
-		sm: {
-			h: '8',
-			minW: '8',
-			fontSize: 'sm',
-			px: '3'
-		},
-		xs: {
-			h: '6',
-			minW: '6',
-			fontSize: 'xs',
-			px: '2'
-		}
-	};
 
-	function buttonVariant(themeColor: string, variant: string) {
-		return {
-			ghost: {
-				bg: 'none',
-				border: 'none',
-				color: themeColor === 'gray' ? `${themeColor}.700` : `${themeColor}.500`,
-				_active: { bg: `${themeColor}.100`, brightness: '0.95' },
-				_hover: {
-					bg: `${themeColor}.100`
-				}
-			},
-			outline: {
-				color: themeColor === 'gray' ? `gray.600` : `${themeColor}.500`,
-				border: '2px',
-				borderStyle: 'solid',
-				borderColor: `${themeColor}.200`,
-				bg: 'none',
-				_active: { bg: `${themeColor}.100`, brightness: '0.95' },
-				_hover: {
-					bg: `${themeColor}.100`
-				}
-			},
-			solid: {
-				bg: themeColor === 'gray' ? 'gray.200' : `${themeColor}.500`,
-				color: themeColor === 'gray' ? 'black' : 'white',
-				_hover: {
-					opacity: '85%'
-				},
-				_active: {
-					opacity: '110%'
-				}
-			},
-			link: {
-				color: themeColor === 'gray' ? `${themeColor}.700` : `${themeColor}.500`,
-				verticalAlign: 'baseline',
-				lineHeight: 'normal',
-				border: 'none',
-				bg: 'none',
-				h: 'auto',
-				p: '0',
-				_hover: {
-					textDecoration: 'underline'
-				},
-				_active: {
-					color: `${themeColor}.700`
-				}
-			}
-		}[variant];
-	}
+	const common = getContext('common');
+
 	$: ({ ...props } = $$props);
 	$: filteredProps = { ...props, sp: undefined };
 </script>
@@ -114,7 +39,6 @@
 		border: 'none',
 		h: 'auto',
 		d: 'flex',
-
 		_disabled: {
 			opacity: '60%',
 			cursor: 'not-allowed'
@@ -122,8 +46,7 @@
 		_focus: {
 			shadow: 'outline'
 		},
-		...sizeVariant[size],
-		...buttonVariant(colorScheme, variant),
+		...$common.genComponentTheme({ size, colorScheme, variant, disabled, isFullWidth }, 'button'),
 		...sp
 	}}
 >

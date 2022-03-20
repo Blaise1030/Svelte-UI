@@ -9,6 +9,7 @@
 		styleInterface
 	} from './styleProps';
 	import { themeStyles } from './themeStyles';
+	import ComponentThemes from './defaultComponentThemes';
 
 	onMount(() => ($common.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches));
 	const useColorMode = (light: string, dark: string) => ($common.isDarkMode ? dark : light);
@@ -24,6 +25,21 @@
 		}
 		return res;
 	})();
+
+	const genComponentTheme = (componentProps: Object, componentType: string) => {
+		const component = ComponentThemes(useColorMode)[componentType];
+		const keys = Object.keys(componentProps);
+		let res = {};
+		for (let i = 0; i < keys.length; i++) {
+			const currentKey = keys[i].toString();
+			const item = component[currentKey];
+			if (item) {
+				if (!(typeof item === 'function')) res = { ...res, ...item[componentProps[currentKey]] };
+				else res = { ...res, ...item({ ...componentProps })[componentProps[currentKey]] };
+			}
+		}
+		return res;
+	};
 
 	const genStyle = (sp: Partial<IStyleInterface>, isBase: boolean = true) => {
 		const { unit, breakpoints } = systemBreakpoints({});
@@ -77,6 +93,7 @@
 
 	let common = writable({
 		isDarkMode: false,
+		genComponentTheme,
 		useColorMode,
 		toggleTheme,
 		genStyle
