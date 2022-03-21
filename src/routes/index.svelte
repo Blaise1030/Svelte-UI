@@ -1,18 +1,19 @@
 <script lang="ts">
-	import VStack from '$lib/stack/VStack.svelte';
-	import Center from '$lib/box/Center.svelte';
-	import Stack from '$lib/stack/Stack.svelte';
+	import icon from '../../static/svelte-logo.svg';
+	import Box from '$lib/base/Box.svelte';
+	import Button from '$lib/button/Button.svelte';
+	import Center from '$lib/center/Center.svelte';
+	import Grid from '$lib/Grid/Grid.svelte';
 	import HStack from '$lib/stack/HStack.svelte';
-	import Grid from '$lib/grid/Grid.svelte';
-	import GridItem from '$lib/grid/GridItem.svelte';
-	import Box from '../lib/box/Box.svelte';
-	import Button from '$lib/Button.svelte';
-	// import Button from '$lib/Button/Button.svelte';
+	import Stack from '$lib/stack/HStack.svelte';
 
-	let openModal = true;
+	import Spacer from '$lib/stack/Spacer.svelte';
+	import VStack from '$lib/stack/VStack.svelte';
+	import { getContext } from 'svelte';
+	import GridItem from '$lib/Grid/GridItem.svelte';
+	const common = getContext('common');
+
 	const onGitHubClicked = (e) => window.open('https://github.com/Blaise1030/Svelte-UI', '_blank');
-	const onCloseModal = (e) => (openModal = false);
-
 	const onGetStartedClicked = (e) => (window.location.href = '/components');
 	const features = [
 		{
@@ -33,200 +34,217 @@
 	];
 </script>
 
-<!-- Navbar -->
-<HStack
+<Box
+	as="nav"
 	sp={{
+		bg: $common.useColorMode('white', 'gray.800'),
 		borderBottom: '1px solid',
 		borderColor: 'gray.200',
+		zIndex: '10',
 		pos: 'fixed',
-		bg: 'white',
+		w: '100%',
 		left: '0',
 		top: '0'
 	}}
 >
-	<HStack sp={{ align: 'space-between', justify: 'center', py: '3', px: '6' }}>
-		<Box sp={{ fontSize: 'lg', color: 'gray.600', fontWeight: 'bold' }}>Svelte-UI</Box>
-		<Button variant="outline" size="lg">
-			<img
-				slot="left-icon"
-				src="https://img.icons8.com/material/24/FF0000/like--v1.png"
-				alt="heart"
-			/>
-
-			Sponsor
-		</Button>
-	</HStack>
-</HStack>
-
-{#if openModal}
-	<Box
-		sp={{
-			pos: 'fixed',
-			left: '3',
-			bottom: '3',
-			zIndex: '10',
-			bg: 'white',
-			border: '1px solid',
-			borderColor: 'gray.200',
-			borderRadius: 'md',
-			shadow: 'md',
-			p: '3'
-		}}
-	>
-		<VStack sp={{ w: 'full' }}>
-			<Button
-				on:click={onCloseModal}
-				sp={{ textAlign: 'end', textDecoration: 'underline', fontWeight: '300', fontSize: 'sm' }}
-				variant="link"
-			>
-				Close
-			</Button>
-			<Box sp={{ my: '4', mx: '4', fontSize: 'lg', color: 'gray.500', maxW: '300px' }}
-				>Still Work In Progress. See, We don't have 'close' IconButton yet for this modal.
-			</Box>
-			<Button
-				on:click={() => window.open('mailto:blaisetiong1030@gmail.com')}
-				sp={{ ml: 'auto' }}
-				variant="solid">Join Me</Button
-			>
-		</VStack>
-	</Box>
-{/if}
-
-<!-- Body -->
-<Box sp={{ h: '100vh' }}>
-	<Center>
-		<VStack sp={{ justify: 'center', p: '2' }}>
-			<VStack
-				sp={{
-					fontSize: ['4xl', '4xl', '5xl'],
-					fontFamily: 'heading',
-					fontWeight: 'black',
-					textAlign: 'center',
-					justify: 'center'
-				}}
-			>
-				<Box sp={{ color: 'gray.700' }}>Create Svelte Apps</Box>
-				<Box sp={{ color: 'teal.500' }}>with ease</Box>
-			</VStack>
-			<Box
-				sp={{
-					maxW: ['80%', '65%', '50%'],
-					textAlign: 'center',
-					fontFamily: 'body',
-					color: 'gray.500',
-					fontSize: 'lg',
-					my: '8'
-				}}
-			>
-				Svelte UI is a simple, modular component library that gives you the building blocks you need
-				to build your Svelte applications with ease.
-			</Box>
-			<Stack sp={{ direction: ['column', 'row', 'row'] }}>
-				<Button
-					sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }}
-					on:click={onGetStartedClicked}
-					colorScheme="teal"
-				>
-					Get Started
-					<img
-						src="https://img.icons8.com/ios/25/FFFFFF/right--v1.png"
-						slot="right-icon"
-						alt="right"
-					/>
-				</Button>
-				<Box sp={{ w: '5', h: ['3', '0', '0'] }} />
-				<Button sp={{ p: '8', px: '6', w: ['90vw', 'auto', 'auto'] }} on:click={onGitHubClicked}>
-					<img
-						src="https://img.icons8.com/ios-glyphs/30/000000/github.png"
-						slot="left-icon"
-						alt="github"
-					/>
-					GitHub
-				</Button>
-			</Stack>
-		</VStack>
-	</Center>
-</Box>
-
-<!-- Features -->
-<Box
-	sp={{ h: ['auto', 'auto', '100vh'], bg: 'gray.50', p: ['5', '5', '0'], pt: ['10', '10', '0'] }}
->
-	<Center>
-		<Box
-			sp={{
-				color: 'gray.700',
-				fontFamily: 'heading',
-				fontWeight: 'black',
-				textAlign: 'center',
-				fontSize: ['3xl', '4xl', '5xl']
-			}}
-		>
-			A Chakra UI experience for Svelte.
-		</Box>
-		<Box
-			sp={{
-				maxW: ['80%', '50%', '50%'],
-				textAlign: 'center',
-				fontFamily: 'body',
-				color: 'gray.500',
-				fontSize: 'lg',
-				my: '8'
-			}}>Opinionated and designed for easy use</Box
-		>
-
-		<Grid
-			sp={{
-				gridTemplateColumns: 'repeat(3,1fr)',
-				w: ['100%', '100%', '80%'],
-				gridGap: '8'
-			}}
-		>
-			{#each features as feature}
-				<GridItem
+	<HStack sp={{ w: '100%' }}>
+		<Box sp={{ px: '4', py: '4' }}>
+			<HStack sp={{ justify: 'center' }}>
+				<img src={icon} alt="logo" />
+				<Box
+					as="span"
 					sp={{
-						gridColSpan: ['3', '3', '1'],
-						border: '1px solid',
-						borderColor: 'gray.300',
-						borderRadius: 'lg',
-						shadow: 'sm',
-						bg: 'white',
-						p: '10'
+						color: $common.useColorMode('gray.700', 'white'),
+						fontFamily: 'heading',
+						fontWeight: 'bold',
+						fontSize: '2xl'
 					}}
 				>
-					<VStack>
-						<Box
-							sp={{ bg: 'teal.400', color: 'white', p: '4', borderRadius: 'full', boxSize: 'lg' }}
-						>
-							<Center>
-								{@html feature.icon}
-							</Center>
-						</Box>
-						<Box sp={{ fontSize: 'xl', fontWeight: 'bold', color: 'gray.500', my: '3', mt: '5' }}>
-							{feature.title}
-						</Box>
-						<Box sp={{ fontSize: 'xl', color: 'gray.500' }}>{feature.description}</Box>
-					</VStack>
-				</GridItem>
-			{/each}
-		</Grid>
-	</Center>
+					Svelte-UI
+				</Box>
+			</HStack>
+		</Box>
+		<Spacer />
+		<Box sp={{ px: '3', py: '4' }}>
+			<HStack sp={{ gap: '3' }}>
+				<Button size="lg" on:click={$common.toggleTheme()}>
+					{#if !$common.isDarkMode}
+						<span class="material-icons"> light_mode </span>
+					{:else}
+						<span class="material-icons"> dark_mode </span>
+					{/if}
+				</Button>
+				<Button
+					variant="solid"
+					size="lg"
+					on:click={$common.toggleTheme()}
+					sp={{ bg: 'white', color: 'black', border: '1px solid', borderColor: 'gray.300' }}
+				>
+					<span slot="left-icon" class="material-icons" style="color: red; margin-bottom:-1px">
+						favorite
+					</span>
+					<span>Buy Me Coffee</span>
+				</Button>
+			</HStack>
+		</Box>
+	</HStack>
 </Box>
 
-<!-- Footer -->
-<Box sp={{ py: '8', textAlign: 'center' }}>
-	<Center>
-		<Button
-			on:click={() => window.open('https://github.com/Blaise1030', '_blank')}
-			sp={{ fontSize: 'md', color: 'gray.500', fontWeight: '300' }}
-			variant="link"
-		>
-			<img
-				src="https://img.icons8.com/material-outlined/24/808080/link--v1.png"
-				slot="left-icon"
-				alt="link"
-			/>Built with care by Blaise 2022
-		</Button>
-	</Center>
+<Box as="main">
+	<Box as="section" sp={{ h: '100vh', w: '100vw' }}>
+		<Center>
+			<VStack sp={{ align: 'center', textAlign: 'center', justify: 'center' }}>
+				<Box
+					as="span"
+					sp={{
+						color: $common.useColorMode('gray.700', 'white'),
+						fontSize: ['3xl', '3xl', '6xl'],
+						fontFamily: 'heading',
+						fontWeight: 'black'
+					}}
+					>Create accessible Svelte
+					<br />
+					Apps
+					<Box as="span" sp={{ color: $common.useColorMode('teal.600', 'teal.300') }}
+						>with speed</Box
+					>
+				</Box>
+				<Box
+					as="p"
+					sp={{
+						color: $common.useColorMode('gray.500', 'gray.400'),
+						w: ['80%', '60%', '50%'],
+						fontSize: ['lg', 'xl', '2xl'],
+						p: '2'
+					}}
+				>
+					Svelte UI is a simple, modular and accessible component library that gives you the
+					building blocks you need to build your Svelte applications.
+				</Box>
+				<Stack
+					sp={{
+						direction: ['column', 'row', 'row'],
+						justify: 'center',
+						align: 'center',
+						w: '90%',
+						gap: '2',
+						p: '6'
+					}}
+				>
+					<Button
+						on:click={onGetStartedClicked}
+						sp={{ px: '50px', py: '30px', w: ['100%', 'auto', 'auto'] }}
+						colorScheme="teal"
+						size="lg"
+					>
+						Start Now
+					</Button>
+					<Button
+						on:click={onGitHubClicked}
+						sp={{ px: '50px', py: '30px', w: ['100%', 'auto', 'auto'] }}
+						size="lg"
+					>
+						GitHub
+					</Button>
+				</Stack>
+			</VStack>
+		</Center>
+	</Box>
+
+	<Box
+		as="section"
+		sp={{
+			bg: $common.useColorMode('gray.50', 'gray.900'),
+			h: ['auto', 'auto', '100vh'],
+			w: '100vw',
+			py: '14'
+		}}
+	>
+		<Center>
+			<VStack
+				sp={{
+					color: $common.useColorMode('gray.500', 'gray.300'),
+					textAlign: 'center',
+					justify: 'center',
+					align: 'center'
+				}}
+			>
+				<Box
+					sp={{
+						color: $common.useColorMode('gray.700', 'white'),
+						fontSize: ['3xl', '3xl', '5xl'],
+						m: '0'
+					}}
+					as="h3">An experience you'd expect<br /> from a design system</Box
+				>
+				<Box
+					as="p"
+					sp={{
+						color: $common.useColorMode('gray.500', 'gray.400'),
+						w: ['80%', '60%', '50%'],
+						fontSize: ['lg', '2xl', '2xl'],
+						p: '2'
+					}}
+				>
+					Opinionated and designed for daily use.
+				</Box>
+				<Grid
+					sp={{
+						gridTemplateColumns: 'repeat(3,1fr)',
+						w: ['90%', '100%', '80%'],
+						gridGap: '8'
+					}}
+				>
+					{#each features as feature}
+						<GridItem
+							sp={{
+								bg: $common.useColorMode('white', 'gray.800'),
+								colSpan: ['3', '3', '1'],
+								border: $common.useColorMode('1px solid', 'none'),
+								borderColor: 'gray.300',
+								borderRadius: 'lg',
+								shadow: 'sm',
+								p: '10'
+							}}
+						>
+							<VStack sp={{ align: 'flex-start', textAlign: 'start' }}>
+								<Box
+									sp={{
+										bg: 'teal.400',
+										color: 'white',
+										p: '4',
+										borderRadius: 'full',
+										boxSize: '20px'
+									}}
+								>
+									<Center>
+										{@html feature.icon}
+									</Center>
+								</Box>
+								<Box sp={{ fontSize: 'xl', fontWeight: 'bold', my: '3', mt: '5' }}>
+									{feature.title}
+								</Box>
+								<Box sp={{ fontSize: 'xl' }}>{feature.description}</Box>
+							</VStack>
+						</GridItem>
+					{/each}
+				</Grid>
+				<Box as="footer" sp={{ pt: '10', textAlign: 'center', h: 'auto' }}>
+					<Center>
+						<Button
+							on:click={() => window.open('https://github.com/Blaise1030', '_blank')}
+							sp={{ fontSize: 'md', color: 'gray.500', fontWeight: '300' }}
+							variant="link"
+						>
+							<img
+								src="https://img.icons8.com/material-outlined/24/808080/link--v1.png"
+								slot="left-icon"
+								alt="link"
+							/>Built with care by Blaise 2022
+						</Button>
+					</Center>
+				</Box>
+			</VStack>
+		</Center>
+	</Box>
 </Box>

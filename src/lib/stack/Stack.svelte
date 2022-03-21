@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Box from '$lib/box/Box.svelte';
-	import type { IStyleInterface } from '$lib/system/styleProps';
+	import type { IStyleInterface } from '$lib/base/styleProps';
+	import Box from '$lib/base/Box.svelte';
 	import type StackProps from './Stack.types';
 
 	$: ({ ...props } = $$props);
@@ -13,10 +13,10 @@
 <Box
 	{...props}
 	sp={{
-		d: 'flex',
-		alignItems: sp['justify'] || 'start',
-		justifyContent: sp['align'] || 'start',
 		flexDirection: sp['direction'] || 'column',
+		justifyContent: sp['align'] || 'start',
+		alignItems: sp['justify'] || 'start',
+		d: 'flex',
 		...sp
 	}}
 >

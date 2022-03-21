@@ -1,17 +1,7 @@
-<script lang="ts">
-	import generateStylesClass from '$lib/system/styleComposer';
-	import type { IStyleInterface } from '$lib/system/styleProps';
-	import type WrapProps from './Wrap.types';
-	export let styleProps: Partial<IStyleInterface> & WrapProps = {};
-	$: ({ ...props } = $$props);
+<script>
+	import Box from '$lib/base/Box.svelte';
 </script>
 
-<li
-	{...props}
-	style="list-style-type: none;"
-	class={generateStylesClass({
-		...styleProps
-	})}
->
+<Box as="li" sp={{ d: 'flex', flexWrap: 'wrap' }}>
 	<slot />
-</li>
+</Box>

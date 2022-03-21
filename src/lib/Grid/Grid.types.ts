@@ -1,5 +1,4 @@
-import type { IStyleInterface } from '$lib/system/styleProps';
-import type { SystemStyleProps } from '$lib/system/System.types';
+import type { IStyleInterface, SystemStyleProps } from '$lib/base/styleProps';
 
 export type GridItemPropsOmit = Omit<IStyleInterface, 'gridColumn' | 'gridRow'>;
 export type GridItemProps = {

@@ -1,8 +1,5 @@
-<script lang="ts">
-	import Box from '$lib/box/Box.svelte';
-	import type { IStyleInterface } from '$lib/system/styleProps';
-	export let sp: Partial<IStyleInterface> = {};
-	$: ({ ...props } = $$props);
+<script>
+	import Box from '$lib/base/Box.svelte';
 </script>
 
-<Box {...props} sp={{ w: '100%', ...sp }} />
+<Box as="div" sp={{ flexGrow: '1' }} />
