@@ -1,30 +1,25 @@
 <script lang="ts">
-	import { css } from '@emotion/css';
-	import generateStylesClass from '$lib/system/styleComposer';
-	import type { IStyleInterface } from '$lib/system/styleProps';
+	import type { IStyleInterface } from '$lib/base/styleProps';
 	import type WrapProps from './Wrap.types';
+	import Box from '$lib/base/Box.svelte';
+	$: ({ ...props } = $$props);
 	export let sp: Partial<
-		IStyleInterface & Omit<IStyleInterface, 'flexDirection' | 'flexWrap' | 'd' | 'spacing'>
+		Omit<IStyleInterface, 'd' | 'alignItems' | 'justifyContent' | 'flexDirection' | 'gridGap'>
 	> &
 		WrapProps = {};
-	$: ({ ...props } = $$props);
-	const spacing = css`
-		li {
-			margin: ${sp['spacing'] || '5px'};
-		}
-	`;
 </script>
 
-<ul
+<Box
 	{...props}
-	class={`${spacing} ${generateStylesClass({
-		justifyContent: sp['justify'] || 'start',
-		flexDirection: sp['direction'] || 'row',
-		alignItems: sp['align'] || 'start',
+	as="ul"
+	sp={{
+		justifyContent: sp['align'] || 'start',
+		alignItems: sp['justify'] || 'start',
+		flexDirection: 'row',
 		flexWrap: 'wrap',
 		d: 'flex',
 		...sp
-	})}`}
+	}}
 >
 	<slot />
-</ul>
+</Box>

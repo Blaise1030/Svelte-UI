@@ -24,6 +24,7 @@ type StackProps = Partial<{
 	align: AlignSelection | AlignSelection[];
 	direction: StackSelection | StackSelection[];
 	justify: JustifySelection | JustifySelection[];
+	gap: string | string[];
 }>;
 
 export default StackProps;

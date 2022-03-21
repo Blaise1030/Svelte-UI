@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { IStyleInterface } from '../system/styleProps';
-	import generateStylesClass from '../system/styleComposer';
-	import Box from '$lib/box/Box.svelte';
+	import type { IStyleInterface } from '$lib/base/styleProps';
+	import Box from '$lib/base/Box.svelte';
+
 	export let sp: Partial<IStyleInterface> = {};
 	$: ({ ...props } = $$props);
 </script>
