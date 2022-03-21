@@ -3,6 +3,7 @@
 	import type StackProps from '$lib/stack/Stack.types';
 	import type { IStyleInterface } from '$lib/base/styleProps';
 	import { createEventDispatcher, getContext } from 'svelte';
+	import { transition_in } from 'svelte/internal';
 	const onClick = (event: any) => dispatch('click', event);
 	const dispatch = createEventDispatcher();
 
@@ -26,6 +27,7 @@
 	on:click={onClick}
 	as="button"
 	sp={{
+		transition: 'background-color 0.5s ease',
 		w: isFullWidth ? '100%' : 'auto',
 		verticalAlign: 'baseline',
 		fontWeight: 'semibold',
@@ -50,7 +52,13 @@
 		...sp
 	}}
 >
-	<slot name="left-icon" />
+	{#if $$slots['left-icon']}
+		<slot name="left-icon" />
+		<Box sp={{ w: '2' }} />
+	{/if}
 	<slot />
-	<slot name="right-icon" />
+	{#if $$slots['right-icon']}
+		<Box sp={{ w: '2' }} />
+		<slot name="right-icon" />
+	{/if}
 </Box>

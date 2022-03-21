@@ -22,8 +22,12 @@ const ComponentThemes = (colorMode: (l: string, d: string) => string, extensions
 				}
 			},
 			solid: {
-				bg: colorScheme === 'gray' ? 'gray.200' : `${colorScheme}.500`,
-				color: colorScheme === 'gray' ? 'black' : 'white',
+				color: colorScheme === 'gray' ? colorMode('black', 'white') : 'white',
+				bgOpacity: colorMode('100%', '50%'),
+				bg:
+					colorScheme === 'gray'
+						? colorMode('gray.200', 'rgba(255, 255, 255, 0.2)')
+						: colorMode(`${colorScheme}.500`, `${colorScheme}.400`),
 				_hover: {
 					opacity: '85%'
 				},

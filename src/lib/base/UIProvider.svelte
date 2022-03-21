@@ -11,9 +11,18 @@
 	import { themeStyles } from './themeStyles';
 	import ComponentThemes from './defaultComponentThemes';
 
-	onMount(() => ($common.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches));
+	onMount(() => {
+		$common.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		document.body.style.transition = 'background-color 0.1s ease';
+		if ($common.isDarkMode) document.bgColor = '#1A202C';
+		else document.bgColor = 'white';
+	});
 	const useColorMode = (light: string, dark: string) => ($common.isDarkMode ? dark : light);
-	const toggleTheme = () => ($common.isDarkMode = !$common.isDarkMode);
+	const toggleTheme = () => {
+		$common.isDarkMode = !$common.isDarkMode;
+		if ($common.isDarkMode) document.bgColor = '#1A202C';
+		else document.bgColor = 'white';
+	};
 
 	const styleMap = (() => {
 		const obj = styleInterface('any');
@@ -69,7 +78,7 @@
 						if (themeStyles[keyMap] && themeStyles[keyMap][cItem[j]])
 							value = themeStyles[keyMap][cItem[j]];
 						const val = styleInterface(value)[keyMap][cKey];
-						responsiveBuckets[j].push(val);
+						responsiveBuckets[j].push(`${val}; `);
 					}
 				}
 			}

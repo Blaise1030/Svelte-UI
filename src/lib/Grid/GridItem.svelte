@@ -8,8 +8,12 @@
 <Box
 	{...props}
 	sp={{
-		gridColumn: `span ${sp['colSpan'] || '1'} / span ${sp['colSpan'] || '1'}`,
-		gridRow: `span ${sp['rowSpan'] || '1'} / span ${sp['rowSpan'] || '1'}`,
+		gridColumn: Array.isArray(sp['colSpan'])
+			? sp['colSpan'].map((span) => `span ${span || '1'} / span ${span || '1'}`)
+			: `span ${sp['colSpan'] || '1'} / span ${sp['colSpan'] || '1'}`,
+		gridRow: Array.isArray(sp['rowSpan'])
+			? sp['rowSpan'].map((span) => `span ${span || '1'} / span ${span || '1'}`)
+			: `span ${sp['rowSpan'] || '1'} / span ${sp['rowSpan'] || '1'}`,
 		...sp
 	}}
 	as="div"
